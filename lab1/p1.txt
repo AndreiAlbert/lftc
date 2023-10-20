@@ -1,0 +1,19 @@
+//max 3 numbers
+
+main: {
+    declare a Int
+    declare b Int
+    declare c Int
+    readInt(a)
+    readInt(b)
+    readInt(c)
+    if (a > b && a > c): {
+        write(a)
+    }
+    else if (b > a && b > c): {
+        write(b)
+    }
+    else: {
+        write(c)
+    }
+}

@@ -1,0 +1,16 @@
+//first n fibonnaci numbers
+
+main: {
+    declare n Int
+    readInt(n)
+    declare l List[] Int
+    declare index Int
+    l[0] = 1
+    l[1] = 2
+    for index = 2; index < n; index++ : {
+        l[index] = l[index - 1] + l[index - 2]
+    }
+    for declare index = 0; index < n; index++ : {
+        write(l[index])
+    }
+} 
