@@ -3,21 +3,21 @@ stmt = (decl_var_stmt | decl_list_stmt | assign_stmt | if_stmt | for_stmt | io_s
 
 type = "Int" | "Bool" | "String" 
 decl_var_stmt = "declare" identifier type 
-decl_list_stmt = "declare" identifier "List[]" type
+decl_list_stmt = "declare" identifier "List[]" type 
 
 assign_stmt = identifier "=" expression | identifier ("--" | "++")
 expression = int_expr | string_expr
 int_expr = integer | identifier | int_expr ("+" | "-" | "/" | "*") int_expr | "(" int_expr ("+" | "-" | "/" | "*") int_expr ")"
 string_expr = string | identifier | string_expr + string_expr
 
-if_stmt = "if" "(" condition ")" ":" "{" {stmt} "}" [else_stmt]
-else_stmt = ("else" "if"  "(" condition ")" ":" "{" {stmt} "}" ) | "else" ":" "{" {stmt} "}"  
+if_stmt = "if" "(" condition ")" ":" "{" stmt {stmt} "}" [else_stmt]
+else_stmt = ("else" "if"  "(" condition ")" ":" "{" stmt {stmt} "}" ) | "else" ":" "{" stmt {stmt} "}"  
 condition = expression ("==" | "<=" | ">=" | ">" |"<" ) expression
 
 io_stmt = read_stmt | write_stmt
-read_stmt = ("readInt" | "readStr") identifier
-write_stmt = "write" (identifier | expression)
+read_stmt = ("readInt" | "readStr") "(" identifier ")"
+write_stmt = "write"  "(" (identifier | expression) ")"
 
 assign_arr_stmt =  identifier "[" pozitive_number "]" "=" expression
 
-for_stmt = "for" (assign_stmt | assign_arr_stmt) ";" condition ";" (assign_arr_stmt | assign_stmt)
+for_stmt = "for" (assign_stmt | assign_arr_stmt) ";" condition ";" (assign_arr_stmt | assign_stmt) ":" "{" stmt {stmt} "}"

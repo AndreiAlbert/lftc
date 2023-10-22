@@ -1,0 +1,18 @@
+
+main: {
+    declare a Int 
+    declare b Int
+    dec c Int // here is the error because it cannot classify "dec"
+    readInt(a)
+    readInt(b)
+    readInt(c)
+    if (a > b && a > c): {
+        write(a)
+    }
+    else if (b > a && b > c): {
+        write(b)
+    }
+    else: {
+        write(c)
+    }
+}
