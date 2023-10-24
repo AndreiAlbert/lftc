@@ -14,7 +14,7 @@
 :
 ;
 ,
-declare 
+declare  
 main
 readInt
 for
