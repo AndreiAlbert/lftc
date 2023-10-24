@@ -19,7 +19,6 @@ std::size_t HashTable::hash(const std::variant<std::string, int> &key)
 void HashTable::insert(const std::variant<std::string, int> &key, const int value)
 {
     const int index = this->hash(key);
-    const std::optional element = this->get_value(key);
     this->table[index].push_back(std::make_pair(key, value));
 }
 

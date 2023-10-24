@@ -2,14 +2,7 @@
 #include <iostream>
 #include <assert.h>
 #include "SymbolTable.h"
-#include "Lexer.h"
 #define ST_SIZE 100
-
-void test_lexer()
-{
-    Lexer l{"../lab1b/tokens.txt"};
-    std::cout << l.is_token("declare");
-}
 
 void test_identifier_table()
 {
@@ -62,7 +55,6 @@ void test_constants_table()
 
 int main()
 {
-    test_lexer();
     test_identifier_table();
     test_constants_table();
     std::cout << "Tests good\n";
