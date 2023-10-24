@@ -4,3 +4,9 @@
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+#ignore object files
+*.o
+
+#ignore executable
+main 
