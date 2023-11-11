@@ -1,9 +1,7 @@
-//first n fibonnaci numbers
-
 main: {
     declare n Int
     readInt(n)
-    declare l List[] Int
+    declare l_1 List[] Int
     declare index Int
     l[0] = 1
     l[1] = 2
@@ -13,4 +11,4 @@ main: {
     for declare index = 0; index < n; index++ : {
         write(l[index])
     }
-} 
+}

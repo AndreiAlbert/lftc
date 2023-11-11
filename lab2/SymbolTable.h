@@ -11,8 +11,8 @@ class SymbolTable
 {
 public:
     SymbolTable(std::size_t size);
-    void add(const std::variant<std::string, int> &key);
-    std::optional<int> get_value(const std::variant<std::string, int> &key);
+    void add(const std::string& element, TYPE type);
+    std::optional<HashTableData> get_value(const std::string& key, TYPE type);
     int get_current_position();
 
 private:

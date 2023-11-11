@@ -1,9 +1,9 @@
-//max 3 numbers
-
+//this is a comment
 main: {
     declare a Int
     declare b Int
     declare c Int
+    @
     readInt(a)
     readInt(b)
     readInt(c)

@@ -10,23 +10,24 @@ SymbolTable::SymbolTable(std::size_t size)
     this->current_position = 0;
 }
 
-void SymbolTable::add(const std::variant<std::string, int> &key)
+void SymbolTable::add(const std::string& element, TYPE type)
 {
-    std::optional result = this->hash_table.get_value(key);
+    std::optional result = this->hash_table.get_value(element, type);
     if (result.has_value())
     {
         return;
     }
     this->current_position++;
-    this->hash_table.insert(key, this->current_position);
+    this->hash_table.insert(element, type, current_position);
 }
 
-std::optional<int> SymbolTable::get_value(const std::variant<std::string, int> &key)
+std::optional<HashTableData> SymbolTable::get_value(const std::string& element, TYPE type)
 {
-    return this->hash_table.get_value(key);
+    return this->hash_table.get_value(element, type);
 }
 
 int SymbolTable::get_current_position()
 {
     return this->current_position;
 }
+

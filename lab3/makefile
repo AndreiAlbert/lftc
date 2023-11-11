@@ -4,7 +4,8 @@ CXXFLAGS = -Wall -std=c++17
 SRCS = HashTable.cpp main.cpp SymbolTable.cpp Lexer.cpp
 HEADERS = HashTable.h SymbolTable.h Lexer.h
 
-OBJS = $(SRCS:.cpp=.o)
+OBJDIR = obj/
+OBJS = $(SRCS:%.cpp=$(OBJDIR)%.o)
 EXECUTABLE = main
 
 all: $(EXECUTABLE)
@@ -12,8 +13,9 @@ all: $(EXECUTABLE)
 $(EXECUTABLE): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
 
-%.o: %.cpp $(HEADERS)
+$(OBJDIR)%.o: %.cpp $(HEADERS)
+	mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJS) $(EXECUTABLE)
+	rm -rf $(OBJDIR) $(EXECUTABLE)

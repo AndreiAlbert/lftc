@@ -10,19 +10,29 @@
 #include <vector>
 #include <optional>
 #include <string>
-#include <variant>
+#include <map>
+
+enum TYPE {identifier, constant};
+
+struct HashTableData {
+    std::string name;
+    TYPE type;
+    std::size_t position;
+};
 
 class HashTable
 {
 public:
-    void insert(const std::variant<std::string, int> &key, const int value);
+    void insert(const std::string& value, TYPE type, std::size_t position);
     explicit HashTable(std::size_t size);
     HashTable(){};
-    std::optional<int> get_value(const std::variant<std::string, int> &key);
+    std::optional<HashTableData> get_value(const std::string& element, TYPE type);
+    friend std::ostream& operator<<(std::ostream& os, const HashTable& hashTable);
+    std::vector<std::list<HashTableData>> table;
 
 private:
-    std::vector<std::list<std::pair<std::variant<std::string, int>, int>>> table;
-    std::size_t hash(const std::variant<std::string, int> &key);
+    //std::vector<std::list<std::pair<std::string, TYPE>>> table;
+    std::size_t hash(const std::string& key);
     std::size_t size{};
 };
 

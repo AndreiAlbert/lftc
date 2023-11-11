@@ -1,4 +1,5 @@
 +
+%
 -
 /
 *
@@ -14,6 +15,13 @@
 :
 ;
 ,
+&&
+||
+!
+[]
+++
+[
+]
 declare  
 main
 readInt
@@ -21,3 +29,7 @@ for
 write 
 if 
 else
+Int
+String
+Bool
+List
