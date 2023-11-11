@@ -32,10 +32,7 @@ int SymbolTable::get_current_position()
     return this->current_position;
 }
 
-std::ostream &operator<<(std::ostream &os, const SymbolTable &table)
+const HashTable& SymbolTable::get_hash_table()
 {
-    // TODO: insert return statement here
-    os << table.hash_table << std::endl;
-    return os;
+    return this->hash_table;
 }
-

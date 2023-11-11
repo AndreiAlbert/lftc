@@ -27,13 +27,12 @@ public:
     explicit HashTable(std::size_t size);
     HashTable(){};
     std::optional<HashTableData> get_value(const std::string& element, TYPE type);
-    friend std::ostream& operator<<(std::ostream& os, const HashTable& hashTable);
-    std::vector<std::list<HashTableData>> table;
-
+    const std::vector<std::list<HashTableData>>& get_list();
 private:
     //std::vector<std::list<std::pair<std::string, TYPE>>> table;
     std::size_t hash(const std::string& key);
     std::size_t size{};
+    std::vector<std::list<HashTableData>> table;
 };
 
 #endif // HASHTABLEV2_HASHTABLE_H

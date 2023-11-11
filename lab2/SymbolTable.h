@@ -14,7 +14,6 @@ public:
     void add(const std::string& element, TYPE type);
     std::optional<HashTableData> get_value(const std::string& key, TYPE type);
     int get_current_position();
-
 private:
     HashTable hash_table;
     int current_position;

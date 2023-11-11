@@ -33,14 +33,7 @@ std::optional<HashTableData> HashTable::get_value(const std::string& element, TY
     return {};
 }
 
-std::ostream& operator<<(std::ostream& os, const HashTable& hashTable) {
-    for (std::size_t i = 0; i < hashTable.table.size(); ++i) {
-        os << "Bucket " << i << ": ";
-        for (const auto& data : hashTable.table[i]) {
-            os << "{ Name: " << data.name << ", Type: " << (data.type == TYPE::identifier ? "Identifier" : "Constant") 
-               << ", Position: " << data.position << " } ";
-        }
-        os << std::endl; // End the line after each bucket
-    }
-    return os;
+const std::vector<std::list<HashTableData>>& HashTable::get_list()
+{
+    return this->table;
 }

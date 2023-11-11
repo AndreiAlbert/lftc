@@ -30,4 +30,3 @@ int SymbolTable::get_current_position()
 {
     return this->current_position;
 }
-

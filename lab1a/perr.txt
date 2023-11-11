@@ -1,0 +1,27 @@
+main: {
+    declare n Int
+    declare is_prime Bool
+    declare index Int
+    declare response String
+    is_prime = true
+    $
+    readInt(n)
+    for index = 2; index < n / 2; index++ : {
+        if n % index == 0 : {
+            is_prime = false
+        }
+    }
+    if (n == 2) : {
+        is_prime = true
+    }
+    if (n == 1) : {
+        is_prime = false
+    }
+    if (is_prime) : {
+        response = "prime"
+    }
+    else : {
+        response = "not prime"
+    }
+    write(response)
+}

@@ -11,3 +11,7 @@
 #ignore executable
 main 
  
+#ignore object files directory
+obj/
+
+dist/

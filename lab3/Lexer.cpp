@@ -23,15 +23,6 @@ Lexer::Lexer(std::string path_to_tokens, std::string path_to_source_file)
     this->current_line = 1;
 }
 
-void Lexer::print_pif()
-{
-    std::cout << "PIF:\n";
-    for (const auto &pair : this->pif)
-    {
-        std::cout << pair.first << ' ' << pair.second << '\n';
-    }
-}
-
 void Lexer::print_to_file()
 {
     std::fstream f("./dist/pif.out");
@@ -39,10 +30,11 @@ void Lexer::print_to_file()
     for(const auto& pair: this->pif){
         f << pair.first << ' ' << pair.second << '\n';
     }
-    for(int i = 0; i < this->st.hash_table.table.size(); i++)
+    auto hash_table = st.get_hash_table();
+    for(std::size_t i = 0; i < hash_table.get_list().size(); i++)
     {
         f2 << "Bucket " << i << ": ";
-        for (const auto& element : this->st.hash_table.table[i])
+        for (const auto& element :hash_table.get_list()[i])
         {
             f2 << "[Name: " << element.name << ", Type: " << (element.type == identifier ? "Identifier" : "Constant") << ", Position: " << element.position << "] ";
         }
@@ -110,7 +102,6 @@ bool Lexer::check_if_string_const()
 
 bool Lexer::check_if_int_constant()
 {
-    // TODO DONT FORGET ABOUT CARROT
     std::regex pattern("^([+-]?[1-9][0-9]*|0)");
     auto input = this->source_program.substr(this->current_index);
     std::smatch match;
@@ -126,7 +117,6 @@ bool Lexer::check_if_int_constant()
 
 bool Lexer::check_identifier()
 {
-    // TODO DONT FORGET ABOUT CARROT
     std::regex pattern("^([a-zA-Z_][a-zA-Z0-9_]*)");
     auto input = this->source_program.substr(this->current_index);
     std::smatch match;
@@ -213,11 +203,6 @@ void Lexer::next_token()
     }
     this->current_index++;
     this->errors.push_back("Token not recognized on line " + std::to_string(this->current_line) + '\n');
-}
-
-void Lexer::debug()
-{
-    std::cout << this->st;
 }
 
 void Lexer::scan()

@@ -15,10 +15,10 @@ public:
     std::optional<HashTableData> get_value(const std::string& key, TYPE type);
     int get_current_position();
     friend std::ostream& operator<<(std::ostream& os, const SymbolTable& table);
-    HashTable hash_table;
-
+    const HashTable& get_hash_table();
 private:
     int current_position;
+    HashTable hash_table;
 };
 
 #endif // HASHTABLEV2_SYMBOLTABLE_H

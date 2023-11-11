@@ -27,8 +27,15 @@ void program3()
     l.print_to_file();
 }
 
+void program_error()
+{
+    Lexer l{"../lab1b/tokens.txt", "../lab1a/perr.txt"};
+    l.scan();
+    l.print_to_file();
+}
+
 int main()
 {
-    program1();
+    program_error();
     return 0;
 }
