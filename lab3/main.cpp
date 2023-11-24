@@ -36,6 +36,6 @@ void program_error()
 
 int main()
 {
-    program_error();
+    program2();
     return 0;
 }

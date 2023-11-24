@@ -18,10 +18,13 @@ Lexer::Lexer(std::string path_to_tokens, std::string path_to_source_file)
     std::ostringstream ss;
     ss << source_file.rdbuf();
     this->pif = std::vector<std::pair<std::string, int>>{};
+    std::sort(this->tokens.begin(), this->tokens.end(), [](const std::string& a, const std::string&b){
+        return a.size() > b.size();
+    });
     this->source_program = ss.str();
     this->current_index = 0;
     this->current_line = 1;
-}
+} 
 
 void Lexer::print_to_file()
 {
@@ -108,10 +111,11 @@ bool Lexer::check_if_int_constant()
     if (std::regex_search(input, match, pattern))
     {
         this->current_index += match[0].length();
+        this->st.add(match[0], constant);
+        this->pif.push_back(std::make_pair(match[0], this->st.get_current_position()));
         return true;
     }
-    this->st.add(match[0], constant);
-    this->pif.push_back(std::make_pair(match[0], this->st.get_current_position()));
+    
     return false;
 }
 

@@ -1,10 +1,10 @@
-Bucket 0: [Name: is_prime, Type: Identifier, Position: 2] [Name: , Type: Constant, Position: 5] 
+Bucket 0: [Name: 2, Type: Constant, Position: 7] 
 Bucket 1: [Name: n, Type: Identifier, Position: 1] 
 Bucket 2: 
-Bucket 3: [Name: response, Type: Identifier, Position: 4] 
-Bucket 4: [Name: true, Type: Constant, Position: 6] 
-Bucket 5: [Name: false, Type: Constant, Position: 7] [Name: "not prime", Type: Constant, Position: 9] 
-Bucket 6: [Name: index, Type: Identifier, Position: 3] [Name: "prime", Type: Constant, Position: 8] 
-Bucket 7: 
+Bucket 3: 
+Bucket 4: [Name: l, Type: Identifier, Position: 4] 
+Bucket 5: [Name: 1, Type: Constant, Position: 6] 
+Bucket 6: [Name: index, Type: Identifier, Position: 3] [Name: 0, Type: Constant, Position: 5] 
+Bucket 7: [Name: l_1, Type: Identifier, Position: 2] 
 Bucket 8: 
 Bucket 9: 

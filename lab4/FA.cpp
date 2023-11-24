@@ -45,7 +45,40 @@ void FA::show_menu()
     std::cout << "3. Display the transitions\n";
     std::cout << "4. Display the initial state\n";
     std::cout << "5. Display the final state\n";
-    std::cout << "6. Exit<<\n";
+    std::cout << "6. Enter a sequence to verify<<\n";
+}
+
+bool FA::verify_sequence(const std::string &sequence)
+{
+    std::string current_state = this->initial_state;
+    for(char symbol: sequence)
+    {
+        bool transition_found = false;
+        for(const auto& transition: this->transitions)
+        {
+            std::string f_state, s_state; 
+            char weight;
+            std::tie(f_state, s_state, weight) = transition;
+            if(f_state == current_state && weight == symbol)
+            {
+                current_state = s_state; 
+                transition_found = true;
+                break;
+            }
+        }
+        if(!transition_found)
+        {
+            return false;
+        }
+    } 
+    for(const auto& final_state: this -> final_states)
+    {
+        if(final_state == current_state)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 void FA::debug()
@@ -68,13 +101,9 @@ void FA::debug()
     std::cout << this -> initial_state << '\n';
 
     std::cout << "[FINAL STATE]:";
-    std::cout << this -> final_state << '\n';
+    //std::cout << this -> final_state << '\n';
 
     std::cout << "[TRANSITIONS]:";
-    for(const auto& transition: this -> transitions)
-    {
-        std::cout << std::get<0>(transition) << ',' << std::get<1>(transition) << ' ' << std::get<2>(transition) << '\t';
-    }
 }
 
 
@@ -87,25 +116,53 @@ void FA::run()
         this->show_menu();
         std::cout << "Your input:";
         std::cin >> user_input;
+        std::string sequence; 
         switch (user_input)
         {
             case 1: 
                 std::cout << "states\n";
+                for(const auto& state: this -> states)
+                {
+                    std::cout << state << ' ';
+                }
+                std::cout << '\n';
                 break;
             case 2: 
                 std::cout << "alphabet\n";
+                for(const auto &alp: this->alphabet)
+                {
+                    std::cout << alp << ' ';
+                }
+                std::cout << '\n';
                 break;
             case 3:
+                
+                for(const auto& transition: this -> transitions)
+                {
+                    std::cout << std::get<0>(transition) << ',' << std::get<1>(transition) << ' ' << std::get<2>(transition) << '\t';
+                }
                 std::cout << "transitions\n";
                 break;
             case 4: 
                 std::cout << "Initial state: " << this->initial_state << '\n';
                 break;
             case 5: 
-                std::cout << "Final state: " << this -> final_state << '\n';
+                std::cout << "Final states: "; 
+                for(const auto& f_state: this -> final_states)
+                {
+                    std::cout << f_state << ' ';
+                }
+                std::cout << '\n';
                 break;
             case 6: 
-                exit(0);
+                std::cout << "Enter a sequence to verify: ";
+                std::cin >> sequence;
+                if(this->verify_sequence(sequence))
+                {
+                    std::cout << "Sequence accepted\n";
+                } else {
+                    std::cout << "sequence bad\n";
+                }
                 break;
             default:
                 std::cout << "Invalid\n";
@@ -138,9 +195,9 @@ FA::FA(const std::string &file_name)
             {
                 this->initial_state = value;
             }
-            else if(key == "final state")
+            else if(key == "final states")
             {
-                this -> final_state = value;
+                this -> final_states  = this -> split(value, ',');
             }
             else {
                 this->parse_states(value);
